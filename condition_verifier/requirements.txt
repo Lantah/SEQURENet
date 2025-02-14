@@ -1,0 +1,9 @@
+flask
+opencv-python
+numpy
+tensorflow  # or torch, depending on AI models used
+requests
+pyyaml
+
+# External verifier program dependency (if required)
+custom-verifier

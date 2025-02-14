@@ -1,0 +1,6 @@
+networking:
+  protocol: "tcp"  # Using raw TCP for peer-to-peer communication
+  bind_address: "0.0.0.0:8001"  # Address where this node listens for incoming connections
+  peers_from_config: true  # Retrieve peers from pseudovalidator/config/config.yaml
+  message_timeout_ms: 5000  # Timeout for inter-validator messaging
+  max_retries: 3  # Maximum number of retries for failed messages

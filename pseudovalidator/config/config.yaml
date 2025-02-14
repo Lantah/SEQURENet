@@ -1,0 +1,47 @@
+# Pseudovalidator Configuration File
+
+# Unique identifier for the pseudovalidator
+validator_id: "validator-001"
+
+# Cryptographic keys
+keys:
+  public_key: "<your-public-key>"
+  private_key: "<your-private-key>"
+
+# List of trusted pseudovalidators for quorum voting
+trusted_validators:
+  - validator_id: "validator-002"
+    public_key: "<public-key-002>"
+  - validator_id: "validator-003"
+    public_key: "<public-key-003>"
+
+# Networking settings
+network:
+  peer_address: "127.0.0.1:8001"  # Address of this pseudovalidator
+  message_timeout_ms: 5000        # Timeout for inter-validator messaging
+  max_retries: 3                  # Maximum number of retries for failed messages
+
+# Quorum settings
+quorum:
+  threshold: 0.8                   # Fraction of trusted validators required to reach consensus
+  min_validators: 3                 # Minimum number of validators needed for consensus
+
+# Condition verifier service (Python microservice)
+condition_verifier:
+  endpoint: "http://127.0.0.1:5000/verify"  # Endpoint for verification requests
+  request_timeout_ms: 3000                  # Timeout for condition verification requests
+
+# Blockchain smart contract settings (Soroban - Stellar)
+blockchain:
+  contract_address: "<your-smart-contract-address>"
+  network: "metriq-testnet"
+  max_operations: 100  # Maximum contract operations per transaction
+  base_fee: 1000       # Fee per operation in Soroban (Stellar) network
+
+# External verifier program settings
+external_verifier: "./path/to/your/verifier"  # Path to external verification program
+
+# Logging settings
+logging:
+  level: "INFO"                  # Logging level (DEBUG, INFO, WARN, ERROR)
+  log_file: "logs/pseudovalidator.log"  # Path to log file

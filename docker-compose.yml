@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  pseudovalidator:
+    build: ./pseudovalidator
+    container_name: pseudovalidator
+    volumes:
+      - ./pseudovalidator/config:/app/config
+    ports:
+      - "8001:8001"
+    networks:
+      - veri_network
+    environment:
+      - RUST_LOG=info
+
+  condition_verifier:
+    build: ./condition_verifier
+    container_name: condition_verifier
+    volumes:
+      - ./condition_verifier:/app
+    ports:
+      - "5000:5000"
+    networks:
+      - veri_network
+    environment:
+      - FLASK_APP=app.py
+      - FLASK_RUN_HOST=0.0.0.0
+
+  api_gateway:
+    build: ./api_gateway
+    container_name: api_gateway
+    volumes:
+      - ./api_gateway:/app
+    ports:
+      - "8000:8000"
+    networks:
+      - veri_network
+    environment:
+      - CONDITION_VERIFIER_URL=http://condition_verifier:5000/verify
+
+networks:
+  veri_network:
+    driver: bridge
